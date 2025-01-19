@@ -1,0 +1,61 @@
+<div class="game-container">
+    <h1 class="title">Tic-Tac-Toe</h1>
+    
+    <!-- Game Mode Selection -->
+    <div *ngIf="!gameStarted && !gameMode" class="game-mode-selection">
+        <h2>Select Game Mode</h2>
+        <button (click)="setGameMode('single')" class="mode-button">Single Player</button>
+        <button (click)="setGameMode('multi')" class="mode-button">Two Player</button>
+      </div>
+      
+  
+    <!-- Player Selection -->
+    <div *ngIf="gameMode && !gameStarted" class="player-selection">
+      <h2>Select Your Player</h2>
+      <div class="player-options">
+        <div 
+          class="player-option" 
+          [class.selected]="selectedPlayer === 'X'" 
+          (click)="selectPlayer('X')">
+          <span class="player-label">X</span>
+        </div>
+        <div 
+          class="player-option" 
+          [class.selected]="selectedPlayer === 'O'" 
+          (click)="selectPlayer('O')">
+          <span class="player-label">O</span>
+        </div>
+      </div>
+      <button class="start-game" (click)="startGame()">Start Game</button>
+    </div>
+  
+    <!-- Game Board -->
+    <div *ngIf="gameStarted" class="game-board">
+      <div *ngFor="let row of grid; let rowIndex = index" class="row">
+        <div
+          *ngFor="let cell of row; let colIndex = index"
+          class="cell"
+          [class.taken]="cell"
+          (click)="makeMove(rowIndex, colIndex)"
+        >
+          {{ cell }}
+        </div>
+      </div>
+    </div>
+    
+    <!-- Game Status -->
+    <div *ngIf="gameStarted" class="status">{{ gameStatus }}</div>
+    
+    <!-- Reset Button -->
+    <button *ngIf="gameStarted" (click)="resetGame()" class="reset-button">Reset Game</button>
+    <button *ngIf="gameStarted" (click)="resetPage()" class="reset-button">Back</button>
+  
+    <!-- Winner Modal -->
+    <div *ngIf="gameStatus.includes('Wins')" class="winner-modal">
+      <div class="modal-content">
+        <h2>{{ gameStatus }}</h2>
+        <button (click)="resetGame()">Play Again</button>
+      </div>
+    </div>
+  </div>
+  

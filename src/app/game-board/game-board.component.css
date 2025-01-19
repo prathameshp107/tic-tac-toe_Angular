@@ -1,0 +1,313 @@
+/* Overall game container */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    font-family: 'Roboto', Arial, sans-serif;
+    padding: 20px;
+    overflow: hidden; /* Disable scrolling */
+  }
+  
+  /* Game title */
+  .title {
+    font-size: 24px;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 12px;
+  }
+  
+  /* Player selection panel */
+  .player-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .player-selection h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .player-options {
+    display: flex;
+    justify-content: space-between;
+    width: 220px;
+    margin-bottom: 20px;
+  }
+  
+  .player-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .player-option:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  .player-option.selected {
+    background-color: #28a745;
+  }
+  
+  .player-label {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  
+  /* Start game button */
+  .start-game {
+    padding: 12px 24px;
+    font-size: 16px;
+    color: white;
+    background-color: #28a745;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .start-game:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+  
+  /* Game board styling */
+  .game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 5px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    background: #eaeaea;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Grid row (implicit in CSS grid) */
+  .row {
+    display: contents; /* Rows are implicit with CSS grid */
+  }
+  
+  /* Each cell in the grid */
+  .cell {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    background: #ffffff;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  /* Hover effect for empty cells */
+  .cell:hover {
+    background: #f0f0f0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+  }
+  
+  /* Styling for cells that are already taken */
+  .cell.taken {
+    cursor: not-allowed;
+    color: #888;
+    background: #f7f7f7;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Status message styling */
+  .status {
+    font-size: 18px;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Reset button styling */
+  .reset-button {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  /* Hover effect for reset button */
+  .reset-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Active effect for reset button */
+  .reset-button:active {
+    transform: translateY(2px);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .game-board {
+      grid-template-columns: repeat(3, 80px);
+      grid-gap: 4px;
+    }
+  
+    .cell {
+      width: 80px;
+      height: 80px;
+      font-size: 24px;
+    }
+  
+    .title {
+      font-size: 28px;
+    }
+  
+    .start-game {
+      font-size: 14px;
+      padding: 10px 20px;
+    }
+  }
+  
+
+  /* Overall game container */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    font-family: 'Roboto', Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  /* Modal styling for winner notification */
+  .winner-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+  }
+  
+  .modal-content h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .modal-content button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #28a745;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .modal-content button:hover {
+    background-color: #218838;
+  }
+  
+  /* Player selection and other elements here... */
+  
+  /* (rest of the existing CSS) */
+  
+  /* Style the game mode selection container */
+.game-mode-selection {
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 40px auto;
+  }
+  
+  /* Heading style */
+  .game-mode-selection h2 {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  
+  /* Style the buttons */
+  .mode-button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin: 10px 0;
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  /* Button hover effects */
+  .mode-button:hover {
+    background-color: #45a049; /* Darker green */
+    transform: scale(1.05); /* Slightly enlarge the button */
+  }
+  
+  /* Active button state */
+  .mode-button:active {
+    transform: scale(0.98); /* Slightly shrink the button when clicked */
+  }
+  
+  /* Optional: Add some spacing between buttons */
+  .mode-button:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  
+  
+  
